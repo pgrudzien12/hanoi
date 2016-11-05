@@ -26,9 +26,18 @@ namespace Hanoi
             }
         }
 
-        public void Move(Ring ringToMove, Stake targetStake, Stake temporaryStake)
+        public int Count
         {
-            if (CanTake(ringToMove) && targetStake.WouldAccept(ringToMove))
+            get
+            {
+                return _stake.Count;
+            }
+        }
+
+
+        public virtual void Move(Ring ringToMove, Stake targetStake, Stake temporaryStake)
+        {
+            if (CanTake(ringToMove))
             {
                 targetStake.Accept(this);
                 return;
@@ -44,6 +53,20 @@ namespace Hanoi
         private void Accept(Stake sourceStake)
         {
             Accept(sourceStake.Take());
+        }
+
+        internal bool Validate()
+        {
+            if (_stake.Count <= 1)
+                return true;
+
+            for (int i = 1; i < _stake.Count; i++)
+            {
+                if (_stake[i - 1] <= _stake[i])
+                    return false;
+            }
+
+            return true;
         }
 
         private void Accept(Ring ring)

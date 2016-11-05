@@ -44,6 +44,16 @@ namespace Hanoi
             return x.Size < y.Size;
         }
 
+        public static bool operator >=(Ring x, Ring y)
+        {
+            return x.Size >= y.Size;
+        }
+
+        public static bool operator <=(Ring x, Ring y)
+        {
+            return x.Size <= y.Size;
+        }
+
         public Ring Smaller()
         {
             return new Ring(Size - 1);
