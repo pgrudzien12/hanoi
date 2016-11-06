@@ -87,11 +87,11 @@ namespace Hanoi
             return lastRing;
         }
 
-        private bool WouldAccept(Ring ringSize)
+        private bool WouldAccept(Ring ring)
         {
             if (!_stake.Any())
                 return true;
-            return _stake.Last() > ringSize;
+            return _stake.Last() > ring;
         }
 
         private bool CanTake(Ring ring)
